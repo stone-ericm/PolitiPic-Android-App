@@ -19,14 +19,44 @@
         android:id="@+id/imageView1"
         android:contentDescription="@string/user_pic" />
     <TextView
-        android:id="@+id/econ"
+        android:id="@id/instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text="Press the button to submit a picture"/>
 
-    <TextView
-        android:id="@+id/soc"
+    <RelativeLayout
+        android:id="@+id/econ_div"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:layout_below="@id/instructions"
+        android:layout_marginTop="16dp">
+        <TextView
+            android:id="@+id/econ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Economic Score is:" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/econ"
+            android:text=""/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/econ_div"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/soc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Social Score is:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/soc"
+            android:text="" />
+    </RelativeLayout>
 </RelativeLayout>

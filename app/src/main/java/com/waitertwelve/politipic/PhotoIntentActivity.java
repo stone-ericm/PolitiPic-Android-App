@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -210,7 +211,6 @@ public class PhotoIntentActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("onCreate", "Fucking hello?");
         mImageView = (ImageView) findViewById(R.id.imageView1);
         FloatingActionButton mfab = (FloatingActionButton) findViewById(R.id.fab);
 
