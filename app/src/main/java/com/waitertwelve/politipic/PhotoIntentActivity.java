@@ -19,7 +19,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -37,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class PhotoIntentActivity extends Activity {
@@ -47,7 +47,6 @@ public class PhotoIntentActivity extends Activity {
     private static final String IMAGEVIEW_VISIBILITY_STORAGE_KEY = "imageviewvisibility";
     private ImageView mImageView;
     private Bitmap mImageBitmap;
-    private FloatingActionButton mfab;
 
     public static String mCurrentPhotoPath;
 
@@ -87,10 +86,11 @@ public class PhotoIntentActivity extends Activity {
 
     private File createImageFile() throws IOException {
         // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
         String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
         File albumF = getAlbumDir();
         File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);
+        Log.d("createImageFile", "Temp file should be created");
         return imageF;
     }
 
@@ -152,7 +152,7 @@ public class PhotoIntentActivity extends Activity {
 
         switch (actionCode) {
             case ACTION_TAKE_PHOTO_B:
-                File f;
+                File f = null;
 
                 try {
                     f = setUpPhotoFile();
@@ -210,9 +210,9 @@ public class PhotoIntentActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.d("onCreate", "Fucking hello?");
         mImageView = (ImageView) findViewById(R.id.imageView1);
-        mfab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton mfab = (FloatingActionButton) findViewById(R.id.fab);
 
 //        mVideoView = (VideoView) findViewById(R.id.videoView1);
         mImageBitmap = null;
@@ -284,8 +284,11 @@ public class PhotoIntentActivity extends Activity {
             FloatingActionButton btn,
             Button.OnClickListener onClickListener,
             String intentName
-    ) { btn.setOnClickListener(onClickListener);
-
+    ) {
+        Log.d("setBtnListener", "can you see me??");
+        if (isIntentAvailable(this, intentName)) {
+        btn.setOnClickListener(onClickListener);
+      }
     }
 
     //    if (myImg){};
@@ -357,7 +360,6 @@ public class PhotoIntentActivity extends Activity {
     }
 //    @Override
 //    protected void onDestroy() {
-//// TODO Auto-generated method stub
 //        super.onDestroy();
 //// Dismiss the progress bar when application is closed
 //        if (prgDialog != null) {
