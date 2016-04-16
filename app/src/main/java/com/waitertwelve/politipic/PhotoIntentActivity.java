@@ -66,11 +66,11 @@ public class PhotoIntentActivity extends Activity {
         File storageDir = null;
 
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-
+            Log.d("getAlbumName", getAlbumName());
             storageDir = mAlbumStorageDirFactory.getAlbumStorageDir(getAlbumName());
 
             if (storageDir != null) {
-                if (!storageDir.mkdirs()) {
+                if (!storageDir.mkdirs()) { //this is where its failing. figure out what mkdirs should be doing/isnt doing
                     if (!storageDir.exists()) {
                         Log.d("CameraSample", "failed to create directory");
                         return null;
@@ -88,10 +88,13 @@ public class PhotoIntentActivity extends Activity {
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+        Log.d("timestamp", timeStamp);
         String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
+        Log.d("imageFileName", imageFileName);
         File albumF = getAlbumDir();
+//        Log.d("albumF", albumF);
         File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);
-        Log.d("createImageFile", "Temp file should be created");
+//        Log.d("imageF", imageF);
         return imageF;
     }
 

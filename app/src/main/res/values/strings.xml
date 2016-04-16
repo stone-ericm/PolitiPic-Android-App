@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PolitiPic</string>
     <string name="action_settings">Settings</string>
-    <string name="album_name">Camera Sample</string>
+    <string name="album_name">CameraSample</string>
     <string name="user_pic">user-pic</string>
     <string name="poop">poop</string>
 </resources>
